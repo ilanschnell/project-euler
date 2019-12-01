@@ -1,4 +1,4 @@
-from string import ascii_lowercase as lowercase
+from itertools import product
 
 
 with open('cipher.txt') as fi:
@@ -6,22 +6,19 @@ with open('cipher.txt') as fi:
 cipher = [int(x) for x in s.split(',')]
 
 def try_decrypt(password, display=False):
-    key = map(ord, (500 * password)[:len(cipher)])
-    new = [c[0] ^ c[1] for c in zip(cipher, key)]
-    text = ''.join(map(chr, new))
+    key = (500 * password)[:len(cipher)]
+    plain = bytes(a ^ b for a, b in zip(cipher, key))
     if display:
-        print(password, sum(new))
-        print(text)
+        print(password, sum(plain))
+        print(plain)
     else:
-        return(text.count(' '))
+        return(plain.count(b' '))
 
-ms = 0
-for a in lowercase:
-    for b in lowercase:
-        for c in lowercase:
-            s = try_decrypt(a + b + c)
-            if s > ms:
-                ms = s
-                password = a + b + c
+max_spaces = 0
+for p in product(range(97, 123), repeat=3):
+    spaces = try_decrypt(p)
+    if spaces > max_spaces:
+        max_spaces = spaces
+        password = p
 
 try_decrypt(password, True)
