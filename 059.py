@@ -8,13 +8,13 @@ cipher = [int(x) for x in s.split(',')]
 def try_decrypt(password, display=False):
     plain = bytes(a ^ b for a, b in zip(cipher, cycle(password)))
     if display:
-        print(bytes(password), sum(plain))
+        print('password:', bytes(password))
         print(plain)
-    else:
-        return(plain.count(b' '))
+        print('ascii sum:', sum(plain))
+    return(plain.count(b' '))
 
 max_spaces = 0
-for p in product(range(97, 123), repeat=3):
+for p in product(range(ord('a'), ord('z') + 1), repeat=3):
     spaces = try_decrypt(p)
     if spaces > max_spaces:
         max_spaces = spaces
