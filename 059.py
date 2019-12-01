@@ -9,7 +9,7 @@ def try_decrypt(password, display=False):
     key = (500 * password)[:len(cipher)]
     plain = bytes(a ^ b for a, b in zip(cipher, key))
     if display:
-        print(password, sum(plain))
+        print(bytes(password), sum(plain))
         print(plain)
     else:
         return(plain.count(b' '))
