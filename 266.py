@@ -15,6 +15,7 @@ for i in primes:
 print('p', p)
 log_p = log(p)
 print('log(p)', log_p)
+print('log(p)/2', log_p / 2)
 
 log_primes = [log(x) for x in primes]
 
@@ -41,7 +42,6 @@ for lv, k in left:
     s = left[k][0] + right[m][0]
     d.append((s, k, right[m][1]))
 
-print(log_p / 2)
 s, k, m = max(d)
 
 x = k + m * N
