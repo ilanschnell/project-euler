@@ -8,7 +8,6 @@ from sympy.ntheory import primerange
 def prod(iterable):
     return reduce(operator.mul, iterable, 1)
 
-
 LIMIT = 190
 
 primes = list(primerange(1, LIMIT))
@@ -31,28 +30,26 @@ N = 2 ** NH
 left = []
 right = []
 for k in range(0, N):
-    ls = rs = 0
+    lsum = rsum = 0
     for i in range(0, NH):
         if (1 << i) & k:
-            ls += log_primes[i]
-            rs += log_primes[i + NH]
-    left.append((ls, k))
-    right.append((rs, k))
+            lsum += log_primes[i]
+            rsum += log_primes[i + NH]
+    left.append((lsum, k))
+    right.append((rsum, k))
 
 right.sort()
 
 d = []
 for lv, k in left:
     rv = log_p / 2 - lv
-    i, j = 0, N
     m = bisect.bisect_left(right, (rv, 0)) - 1
-    s = left[k][0] + right[m][0]
-    d.append((s, k, right[m][1]))
+    d.append((left[k][0] + right[m][0], k + right[m][1] * N))
 
-s, k, m = max(d)
+s, k = max(d)
+print('       s', s)
 
-x = k + m * N
-res = prod(primes[i] for i in range(0, NP) if (1 << i) & x)
+res = prod(primes[i] for i in range(0, NP) if (1 << i) & k)
 print('log(res)', log(res))
 print(res)
 print(res % int(1E16))
