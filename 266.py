@@ -32,9 +32,9 @@ for k in range(NB):
 upper.sort()
 
 d = []
-for lv, k in lower:
-    i = bisect_left(upper, (hlogp - lv, 0)) - 1
-    d.append((lv + upper[i][0], k + upper[i][1] * NB))
+for lsum, k in lower:
+    i = bisect_left(upper, (hlogp - lsum, 0)) - 1
+    d.append((lsum + upper[i][0], k + upper[i][1] * NB))
 
 s, k = max(d)
 print('       s', s)
