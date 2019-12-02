@@ -1,4 +1,4 @@
-import bisect
+from bisect import bisect_left
 from math import log, prod
 from sympy.ntheory import primerange
 
@@ -13,9 +13,8 @@ assert NP % 2 == 0
 NH = NP // 2
 p = prod(primes)
 print('p', p)
-log_p = log(p)
-print('log(p)', log_p)
-print('log(p)/2', log_p / 2)
+hlogp = log(p) / 2
+print('log(p)/2', hlogp)
 
 NB = 2 ** NH
 
@@ -34,8 +33,7 @@ right.sort()
 
 d = []
 for lv, k in left:
-    rvg = log_p / 2 - lv
-    i = bisect.bisect_left(right, (rvg, 0)) - 1
+    i = bisect_left(right, (hlogp - lv, 0)) - 1
     d.append((lv + right[i][0], k + right[i][1] * NB))
 
 s, k = max(d)
