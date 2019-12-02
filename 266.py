@@ -7,6 +7,8 @@ LIMIT = 190
 primes = list(primerange(1, LIMIT))
 NP = len(primes)
 print('NP', NP)
+# I did not think about what happens in that the number of primes is odd
+assert NP % 2 == 0
 NH = NP // 2
 
 p = 1
