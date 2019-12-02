@@ -40,8 +40,8 @@ right.sort()
 d = []
 for lv, k in left:
     rvg = log_p / 2 - lv
-    m = bisect.bisect_left(right, (rvg, 0)) - 1
-    d.append((lv + right[m][0], k + right[m][1] * NB))
+    i = bisect.bisect_left(right, (rvg, 0)) - 1
+    d.append((lv + right[i][0], k + right[i][1] * NB))
 
 s, k = max(d)
 print('       s', s)
