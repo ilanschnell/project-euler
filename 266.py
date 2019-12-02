@@ -1,11 +1,6 @@
 import bisect
-import operator
-from math import log
-from functools import reduce
+from math import log, prod
 from sympy.ntheory import primerange
-
-def prod(iterable):
-    return reduce(operator.mul, iterable, 1)
 
 LIMIT = 190
 
