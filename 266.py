@@ -26,7 +26,7 @@ NB = 2 ** NH
 
 left = []
 right = []
-for k in range(0, NB):
+for k in range(NB):
     lsum = rsum = 0
     for i in range(0, NH):
         if (1 << i) & k:
@@ -39,9 +39,9 @@ right.sort()
 
 d = []
 for lv, k in left:
-    rv = log_p / 2 - lv
-    m = bisect.bisect_left(right, (rv, 0)) - 1
-    d.append((left[k][0] + right[m][0], k + right[m][1] * NB))
+    rvg = log_p / 2 - lv
+    m = bisect.bisect_left(right, (rvg, 0)) - 1
+    d.append((lv + right[m][0], k + right[m][1] * NB))
 
 s, k = max(d)
 print('       s', s)
