@@ -1,5 +1,5 @@
+import bisect
 from math import log
-from itertools import product
 from sympy.ntheory import primerange
 
 LIMIT = 190
@@ -23,8 +23,7 @@ N = 2 ** NH
 left = []
 right = []
 for k in range(0, N):
-    ls = 0
-    rs = 0
+    ls = rs = 0
     for i in range(0, NH):
         if (1 << i) & k:
             ls += log_primes[i]
@@ -38,14 +37,7 @@ d = []
 for lv, k in left:
     rv = log_p / 2 - lv
     i, j = 0, N
-    while True:
-        m = (i + j) // 2
-        if right[m][0] < rv < right[m + 1][0]:
-            break
-        if right[m][0] < rv:
-            i = m
-        else:
-            j = m
+    m = bisect.bisect_left(right, (rv, 0)) - 1
     s = left[k][0] + right[m][0]
     d.append((s, k, right[m][1]))
 
