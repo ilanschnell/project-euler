@@ -39,7 +39,7 @@ for lsum, k in lower:
 s, k = max(d)
 print('       s', s)
 
-res = prod(primes[i] for i in range(0, NP) if (1 << i) & k)
+res = prod(primes[i] for i in range(NP) if (1 << i) & k)
 print('log(res)', log(res))
 print(res)
 print(res % (10 ** 16))
