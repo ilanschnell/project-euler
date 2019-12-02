@@ -18,23 +18,23 @@ print('log(p)/2', hlogp)
 
 NB = 1 << NH
 
-left = []
-right = []
+lower = []
+upper = []
 for k in range(NB):
-    lsum = rsum = 0
-    for i in range(0, NH):
+    lsum = usum = 0
+    for i in range(NH):
         if (1 << i) & k:
             lsum += log_primes[i]
-            rsum += log_primes[i + NH]
-    left.append((lsum, k))
-    right.append((rsum, k))
+            usum += log_primes[i + NH]
+    lower.append((lsum, k))
+    upper.append((usum, k))
 
-right.sort()
+upper.sort()
 
 d = []
-for lv, k in left:
-    i = bisect_left(right, (hlogp - lv, 0)) - 1
-    d.append((lv + right[i][0], k + right[i][1] * NB))
+for lv, k in lower:
+    i = bisect_left(upper, (hlogp - lv, 0)) - 1
+    d.append((lv + upper[i][0], k + upper[i][1] * NB))
 
 s, k = max(d)
 print('       s', s)
