@@ -8,7 +8,7 @@ primes = list(primerange(1, LIMIT))
 log_primes = [log(x) for x in primes]
 NP = len(primes)
 print('NP', NP)
-# I did not think about what happens in that the number of primes is odd
+# I did not think about what happens in case the number of primes is odd
 assert NP % 2 == 0
 NH = NP // 2
 p = prod(primes)
@@ -16,7 +16,7 @@ print('p', p)
 hlogp = log(p) / 2
 print('log(p)/2', hlogp)
 
-NB = 2 ** NH
+NB = 1 << NH
 
 left = []
 right = []
