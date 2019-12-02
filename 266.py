@@ -1,6 +1,13 @@
 import bisect
+import operator
 from math import log
+from functools import reduce
 from sympy.ntheory import primerange
+
+
+def prod(iterable):
+    return reduce(operator.mul, iterable, 1)
+
 
 LIMIT = 190
 
@@ -11,9 +18,7 @@ print('NP', NP)
 assert NP % 2 == 0
 NH = NP // 2
 
-p = 1
-for i in primes:
-    p *= i
+p = prod(primes)
 print('p', p)
 log_p = log(p)
 print('log(p)', log_p)
@@ -47,10 +52,7 @@ for lv, k in left:
 s, k, m = max(d)
 
 x = k + m * N
-res = 1
-for i in range(0, NP):
-    if (1 << i) & x:
-        res *= primes[i]
+res = prod(primes[i] for i in range(0, NP) if (1 << i) & x)
 print('log(res)', log(res))
 print(res)
 print(res % int(1E16))
