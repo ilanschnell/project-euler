@@ -10,7 +10,7 @@ class Line(object):
         if ax == bx:  # vertical line
             self.m = None
             self.t = ax
-        else:  # f(x) = y = m * x + t
+        else:  # f(x) = m * x + t
             self.m = (ay - by) / (ax - bx)  # slope
             self.t = ay - self.m * ax  # f(0) = t
 

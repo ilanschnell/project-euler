@@ -23,6 +23,7 @@ for row_vec in matrix:
                 t[j] = x
                 dpath[j] = dpath[k] + [column]
     dp = t
+    # len(dp) is binomial(n, i), where i is the number of the row 1..n
 
 assert len(dp) == 1
 result = dp[(1 << n) - 1]
