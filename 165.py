@@ -20,7 +20,7 @@ class Line(object):
 def between(a, b, x):
     return min(a, b) < x < max(a, b)
 
-def intercept(l1, l2):
+def intersection(l1, l2):
     if l1.m is not None:  # l1 not vertical
         if l2.m is not None:  # l2 not vertical (normal case)
             if l1.m != l2.m:  # not parallel
@@ -38,9 +38,9 @@ def intercept(l1, l2):
 
     else:  # l1 vertical
         if l2.m is not None:  # l2 not vertical (only l1 vertical)
-            return intercept(l2, l1)
+            return intersection(l2, l1)
 
-    return None  # no interception
+    return None  # no intersection
 
 def bbs(s=290797):
     while True:
@@ -56,10 +56,10 @@ print(lines[0])
 s = set()
 for i in range(N):
     for j in range(i + 1, N):
-        cp = intercept(lines[i], lines[j])
-        if cp is None:
+        p = intersection(lines[i], lines[j])
+        if p is None:
             continue
-        s.add('%s,%s' % cp)
+        s.add('%s,%s' % p)
     print(i, len(s))
 
 print(len(s))
