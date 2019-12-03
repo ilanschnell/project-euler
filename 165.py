@@ -10,9 +10,9 @@ class Line(object):
         if ax == bx:  # vertical line
             self.m = None
             self.t = ax
-        else:
-            self.m = (ay - by) / (ax - bx)
-            self.t = ay - self.m * ax
+        else:  # f(x) = y = m * x + t
+            self.m = (ay - by) / (ax - bx)  # slope
+            self.t = ay - self.m * ax  # f(0) = t
 
     def __str__(self):
         return '(%s,%s) to (%s,%s)' % (self.ax, self.ay, self.bx, self.by)
