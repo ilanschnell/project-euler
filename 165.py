@@ -9,9 +9,9 @@ class Line(object):
         self.by = by
         if ax == bx:  # vertical line
             self.m = None
-            self.t = Fraction(ax)
+            self.t = ax
         else:
-            self.m = Fraction(ay - by, ax - bx)
+            self.m = (ay - by) / (ax - bx)
             self.t = ay - self.m * ax
 
     def __str__(self):
@@ -40,19 +40,18 @@ def intercept(l1, l2):
         if l2.m is not None:  # l2 not vertical (only l1 vertical)
             return intercept(l2, l1)
 
-    return None
+    return None  # no interception
 
 def bbs(s=290797):
     while True:
         s = pow(s, 2, 50515093)
-        yield s % 500
+        yield Fraction(s % 500)
 
 N = 5000
 t = bbs()
 lines = [Line(next(t), next(t), next(t), next(t)) for i in range(N)]
 
 print(lines[0])
-print(len(lines))
 
 s = set()
 for i in range(N):
