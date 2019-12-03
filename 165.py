@@ -42,23 +42,21 @@ def intercept(l1, l2):
 
     return None
 
+def bbs(s=290797):
+    while True:
+        s = pow(s, 2, 50515093)
+        yield s % 500
+
 N = 5000
-
-s = 290797
-t = [0]
-for n in range(4 * N):
-    s = pow(s, 2, 50515093)
-    t.append(s % 500)
-
-lines = [Line(t[i + 1], t[i + 2], t[i + 3], t[i + 4])
-         for i in range(0, 4 * N, 4)]
+t = bbs()
+lines = [Line(next(t), next(t), next(t), next(t)) for i in range(N)]
 
 print(lines[0])
 print(len(lines))
 
 s = set()
 for i in range(N):
-    for j in range(i):
+    for j in range(i + 1, N):
         cp = intercept(lines[i], lines[j])
         if cp is None:
             continue
