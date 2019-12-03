@@ -21,15 +21,15 @@ def between(a, b, x):
     return min(a, b) < x < max(a, b)
 
 def intercept(l1, l2):
-    if l1.m is not None:
-        if l2.m is not None:  # normal case
-            if l1.m != l2.m:  # unless parallel
+    if l1.m is not None:  # l1 not vertical
+        if l2.m is not None:  # l2 not vertical (normal case)
+            if l1.m != l2.m:  # not parallel
                 # x-coord of crossing point:
                 x = (l2.t - l1.t) / (l1.m - l2.m)
                 if between(l1.ax, l1.bx, x) and between(l2.ax, l2.bx, x):
                     return x, l1.m * x + l1.t
 
-        else:  # only l2 vertical
+        else:  # l2 vertical
             if between(l1.ax, l1.bx, l2.t):
                 # y-coord of crossing point:
                 y = l1.m * l2.t + l1.t
@@ -37,8 +37,7 @@ def intercept(l1, l2):
                     return l2.t, y
 
     else:  # l1 vertical
-        assert l1.m is None
-        if l2.m is not None:  # only l1 vertical
+        if l2.m is not None:  # l2 not vertical (only l1 vertical)
             return intercept(l2, l1)
 
     return None
@@ -63,11 +62,7 @@ for i in range(N):
         cp = intercept(lines[i], lines[j])
         if cp is None:
             continue
-        x, y = cp
-        assert repr(x).startswith('Fraction('), x
-        assert repr(y).startswith('Fraction('), y
         s.add('%s,%s' % cp)
     print(i, len(s))
-s.discard('None')
 
 print(len(s))
