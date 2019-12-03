@@ -1,4 +1,3 @@
-from math import sqrt
 from bitarray import bitarray
 
 is_sqr = bitarray(1_000_001)
