@@ -1,4 +1,4 @@
-# very slow about 20 minutes
+# very slow about 10 minutes
 from sympy.ntheory import totient, primerange
 
 CHAIN_LEN = 25
@@ -7,24 +7,21 @@ PRIME_LIMIT = 40_000_000
 cache = {}
 
 def chain(n):
-    n = totient(n)
+    n -= 1  # if n is prime, then totient(n) = n - 1
     m = n
-    c = 0
+    s = 0
     while n > 1:
         if n in cache:
-            c += cache[n]
-            n = 1
-        else:
-            c += 1
-            n = totient(n)
-        if c + 2 > CHAIN_LEN:
-            return False
-    cache[m] = c
-    return c + 2 == CHAIN_LEN
+            s += cache[n]
+            break
+        n = totient(n)
+        s += 1
+    cache[m] = s
+    return s + 2 == CHAIN_LEN
 
-s = 0
+result = 0
 for p in primerange(1, PRIME_LIMIT):
     if chain(p):
-        s += p
+        result += p
 print(len(cache))
-print(s)
+print(result)
