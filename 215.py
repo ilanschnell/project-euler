@@ -16,7 +16,7 @@ def generate_rows():
             if p > WIDTH:
                 break
             if p == WIDTH:
-                result.add(tuple(row))
+                result.add(frozenset(row))
             row.append(p)
     return sorted(result)
 
