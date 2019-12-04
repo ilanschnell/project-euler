@@ -39,7 +39,7 @@ for i in range(Nrows):
             compatible_rows[j].add(i)
 print("compatible_rows done")
 
-@lru_cache(maxsize=10 * Nrows)
+@lru_cache(maxsize=HEIGHT * Nrows)
 def count(i, rows_left):
     if rows_left == 1:
         return 1
