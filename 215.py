@@ -7,13 +7,15 @@ HEIGHT = 10
 all_rows = []
 
 def generate_rows(row):
-    row = list(row)  # need to make a copy here
     p = row[-1] if row else 0  # possition of last crack
-    if p + 2 == WIDTH or p + 3 == WIDTH:  # just one brick left?
+    if WIDTH - p in (2, 3):
+        # just one brick left
         all_rows.append(frozenset(row))
         return
-    if p + 1 == WIDTH:  # gap too small for a brick?
+    if WIDTH - p == 1:
+        # gap too small for a brick
         return
+    row = list(row)  # need to copy before modifying
     # add a small brick
     row.append(p + 2)
     generate_rows(row)
@@ -22,11 +24,11 @@ def generate_rows(row):
     generate_rows(row)
 
 generate_rows([])
-Nrows = len(all_rows)
-print('rows', Nrows)
+N = len(all_rows)
+print('rows', N)
 
 compatible_rows = defaultdict(list)
-for i in range(Nrows):
+for i in range(N):
     for j in range(i):
         # rows are compatible when there is no intersection of cracks
         if not (all_rows[i] & all_rows[j]):
@@ -34,10 +36,10 @@ for i in range(Nrows):
             compatible_rows[j].append(i)
 print("compatible_rows done")
 
-@lru_cache(maxsize=HEIGHT * Nrows)
-def count(i, rows_left):
-    if rows_left == 1:
+@lru_cache(maxsize=HEIGHT * N)
+def count(i, remaining_rows):
+    if remaining_rows == 1:
         return 1
-    return sum(count(j, rows_left - 1) for j in compatible_rows[i])
+    return sum(count(j, remaining_rows - 1) for j in compatible_rows[i])
 
-print(sum(count(i, HEIGHT) for i in range(Nrows)))
+print(sum(count(i, HEIGHT) for i in range(N)))
