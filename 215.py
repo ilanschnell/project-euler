@@ -21,22 +21,17 @@ def generate_rows(row):
     row[-1] += 1
     generate_rows(row)
 
-def compatible(r1, r2):
-    for i in r1:
-        if i in r2:
-            return False
-    return True
-
 generate_rows([])
 Nrows = len(all_rows)
 print('rows', Nrows)
 
-compatible_rows = defaultdict(set)
+compatible_rows = defaultdict(list)
 for i in range(Nrows):
     for j in range(i):
-        if compatible(all_rows[i], all_rows[j]):
-            compatible_rows[i].add(j)
-            compatible_rows[j].add(i)
+        # rows are compatible when there is no intersection of cracks
+        if not (all_rows[i] & all_rows[j]):
+            compatible_rows[i].append(j)
+            compatible_rows[j].append(i)
 print("compatible_rows done")
 
 @lru_cache(maxsize=HEIGHT * Nrows)
