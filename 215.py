@@ -32,9 +32,11 @@ print('rows', Nrows)
 
 compatible_rows = defaultdict(set)
 for i in range(Nrows):
-    for j in range(Nrows):
+    for j in range(i):
         if compatible(rows[i], rows[j]):
             compatible_rows[i].add(j)
+            compatible_rows[j].add(i)
+print("compatible_rows done")
 
 @lru_cache(maxsize=100_000)
 def count(i, rows_left):
