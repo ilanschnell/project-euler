@@ -22,9 +22,8 @@ def generate_rows():
 
 def compatible(r1, r2):
     for i in r1:
-        for j in r2:
-            if i == j:
-                return False
+        if i in r2:
+            return False
     return True
 
 rows = generate_rows()
