@@ -9,11 +9,11 @@ all_rows = []
 def generate_rows(row):
     p = row[-1] if row else 0  # possition of last crack
     if WIDTH - p in (2, 3):
-        # just one brick left
+        # just one brick left, so append this one to our list
         all_rows.append(frozenset(row))
         return
     if WIDTH - p == 1:
-        # gap too small for a brick
+        # gap too small for another brick
         return
     row = list(row)  # need to copy before modifying
     # add a small brick
