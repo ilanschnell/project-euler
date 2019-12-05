@@ -30,5 +30,5 @@ def S(N):
 assert M(2, 3, 100) == 96
 assert M(3, 5, 100) == 75
 assert M(2, 73, 100) == 0
-assert S(100) == 2662
+assert S(100) == 2262
 print(S(10_000_000))
