@@ -13,8 +13,7 @@ for k in 1, 2, 3, 7:
     for a in range(1, sn):
         a2 = a * a
         b = 0
-        n = 0
-        while n <= LIMIT:
+        while 1:
             b += 1
             n = a2 + k * b * b
             if n > LIMIT:
