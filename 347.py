@@ -27,10 +27,8 @@ def S(N):
             s += maxProd
     return s
 
-print(M(2, 3, 100))
-print(M(3, 5, 100))
-print(M(2, 73, 100))
-print(S(100)) # 2662
-print(S(10_000)) # 16373230
-print(S(1_000_000)) # 124397236942
+assert M(2, 3, 100) == 96
+assert M(3, 5, 100) == 75
+assert M(2, 73, 100) == 0
+assert S(100) == 2662
 print(S(10_000_000))
