@@ -15,7 +15,6 @@ assert F(10, 56) == 880711
 assert F(10, 57) == 1148904
 
 for n in count(1):
-    f = F(50, n)
-    if f > 1_000_000:
+    if F(50, n) > 1_000_000:
         break
 print(n)
