@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <sys/types.h>
 
 /* return Collatz chain length for given start value */
 long chain_len(long n)
