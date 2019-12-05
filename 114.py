@@ -16,5 +16,5 @@ def count(n):
         # one way to have red block of len n
         1)
 
-print(count(7))
+assert count(7) == 17
 print(count(50))
