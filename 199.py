@@ -1,5 +1,7 @@
 from math import sqrt
 
+DEPTH = 10
+
 def area(r):  # since everything is relative, we don't need pi here
     return r * r
 
@@ -12,14 +14,15 @@ def evaluate(k1, k2, k3, depth):
                 evaluate(k2, k3, k4, depth - 1) +
                 evaluate(k1, k3, k4, depth - 1))
 
-depth = 10
 outer_k = 3 - 2 * sqrt(3)
 outer_r = -1 / outer_k
-inner_k = 1
-inner_r = 1 / inner_k
-initial = 3 * area(1)
-v_shape = evaluate(outer_k, inner_k, inner_k, depth)
-middle = evaluate(inner_k, inner_k, inner_k, depth)
 
-result = (3 * area(inner_r) + 3 * v_shape + middle) / area(outer_r)
+inner_r = 1  # the 3 level 1 circles are defined to have radius 1
+inner_k = 1 / inner_r
+
+initial = 3 * area(inner_r)
+v_shape = evaluate(outer_k, inner_k, inner_k, DEPTH)
+middle = evaluate(inner_k, inner_k, inner_k, DEPTH)
+
+result = (initial + 3 * v_shape + middle) / area(outer_r)
 print("%.8f" % (1 - result))
