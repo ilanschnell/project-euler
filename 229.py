@@ -3,10 +3,11 @@ from bitarray import bitarray
 
 LIMIT = 10_000_000
 
-sieves = []
+sieve = bitarray(LIMIT + 1)
+sieve.setall(1)
 
 sn = ceil(sqrt(LIMIT))
-for i, k in enumerate([1, 2, 3, 7]):
+for k in 1, 2, 3, 7:
     s = bitarray(LIMIT + 1)
     s.setall(0)
     for a in range(1, sn):
@@ -19,10 +20,6 @@ for i, k in enumerate([1, 2, 3, 7]):
             if n > LIMIT:
                 break
             s[n] = 1
-    sieves.append(s)
+    sieve &= s
 
-a = sieves[0]
-for i in range(1, 4):
-    a &= sieves[i]
-
-print(a.count())
+print(sieve.count())
