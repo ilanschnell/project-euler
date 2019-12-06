@@ -6,7 +6,7 @@ height = 12
 width = 9
 
 # indicate an empty row
-EmptyRow = fba(width * [0])
+EmptyRow = fba(width * "0")
 
 # set a certain bit to one (= position is not available anymore),
 # return true if bit was zero
@@ -31,32 +31,32 @@ def count(rowsLeft, rowA, rowB, rowC):
 
     # shape: @@
     #        @
-    a, b, c = ba(rowA), ba(rowB), ba(rowC)
+    a, b = ba(rowA), ba(rowB)
     if (rowsLeft >= 2 and pos < width - 1 and
             use(pos, a) and use(pos + 1, a) and use(pos, b)):
-        result += count(rowsLeft, fba(a), fba(b), fba(c))
+        result += count(rowsLeft, fba(a), fba(b), rowC)
 
     # shape: @@
     #         @
-    a, b, c = ba(rowA), ba(rowB), ba(rowC)
+    a, b = ba(rowA), ba(rowB)
     if (rowsLeft >= 2 and pos < width - 1 and
             use(pos, a) and use(pos + 1, a) and use(pos + 1, b)):
-        result += count(rowsLeft, fba(a), fba(b), fba(c))
+        result += count(rowsLeft, fba(a), fba(b), rowC)
 
     # shape: @
     #        @@
-    a, b, c = ba(rowA), ba(rowB), ba(rowC)
+    a, b = ba(rowA), ba(rowB)
     if (rowsLeft >= 2 and pos < width - 1 and
             use(pos, a) and use(pos, b) and use(pos + 1, b)):
-        result += count(rowsLeft, fba(a), fba(b), fba(c))
+        result += count(rowsLeft, fba(a), fba(b), rowC)
 
     # shape:  @
     #        @@
     # note: this shape extends one "negative" unit to the left
-    a, b, c = ba(rowA), ba(rowB), ba(rowC)
+    a, b = ba(rowA), ba(rowB)
     if (rowsLeft >= 2 and pos > 0 and
              use(pos, a) and use(pos - 1, b) and use(pos, b)):
-        result += count(rowsLeft, fba(a), fba(b), fba(c))
+        result += count(rowsLeft, fba(a), fba(b), rowC)
 
     # shape: @
     #        @
@@ -66,10 +66,10 @@ def count(rowsLeft, rowA, rowB, rowC):
         result += count(rowsLeft, fba(a), fba(b), fba(c))
 
     # shape: @@@
-    a, b, c = ba(rowA), ba(rowB), ba(rowC)
+    a = ba(rowA)
     if (rowsLeft >= 1 and pos < width - 2 and
             use(pos, a) and use(pos + 1, a) and use(pos + 2, a)):
-        result += count(rowsLeft, fba(a), fba(b), fba(c))
+        result += count(rowsLeft, fba(a), rowB, rowC)
 
     return result
 
