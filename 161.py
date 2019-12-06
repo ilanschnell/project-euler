@@ -59,8 +59,8 @@ def count(rowsLeft, rowA, rowB, rowC):
         result += count(rowsLeft, fba(a), fba(b), rowC)
 
     # shape: @  a
-    #        @  a
-    #        @  a
+    #        @  b
+    #        @  c
     a, b, c = ba(rowA), ba(rowB), ba(rowC)
     if (rowsLeft >= 3 and use(pos, a) and use(pos, b) and use(pos, c)):
         result += count(rowsLeft, fba(a), fba(b), fba(c))
