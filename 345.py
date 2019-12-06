@@ -1,5 +1,5 @@
 matrix = []
-for line in open('matrix-15.txt'):
+for line in open('files/p345_matrix-15.txt'):
     line = line.strip()
     if line:
         matrix.append([int(x) for x in line.split()])

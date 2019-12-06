@@ -78,7 +78,7 @@ def solve(grid):
 
 if __name__ == '__main__':
     result = 0
-    with open('sudoku.txt') as fi:
+    with open('files/p096_sudoku.txt') as fi:
         for n in range(50):
             line = fi.readline().strip()
             assert line == 'Grid %02d' % (n + 1)

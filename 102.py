@@ -8,7 +8,7 @@ def gamma(a, b):
     return acos(prod2(a, b) / sqrt(prod2(a, a) * prod2(b, b)))
 
 cnt = 0
-for line in open('triangles.txt'):
+for line in open('files/p102_triangles.txt'):
     data = [int(i) for i in line.split(',')]
     a = data[0:2]
     b = data[2:4]

@@ -1,6 +1,6 @@
 triangle = []
 
-for line in open('triangle.txt'):
+for line in open('files/p067_triangle.txt'):
     triangle.append([int(s) for s in line.split()])
 
 N = len(triangle)

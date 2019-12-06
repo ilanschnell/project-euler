@@ -1,7 +1,7 @@
 from itertools import product, cycle
 
 
-with open('cipher.txt') as fi:
+with open('files/p059_cipher.txt') as fi:
     s = fi.read()
 cipher = [int(x) for x in s.split(',')]
 

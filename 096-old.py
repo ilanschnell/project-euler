@@ -35,7 +35,7 @@ def solve(S):
     for c in W:
         return c
 
-fi = open('sudoku.txt','r')
+fi = open('files/p096_sudoku.txt','r')
 for grid in range(50):
     if fi.readline()[0:4] != 'Grid':
         raise 'Error while reading.'
