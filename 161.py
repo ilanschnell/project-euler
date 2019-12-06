@@ -15,7 +15,7 @@ def use(pos, row):
     row[pos] = 1
     return res
 
-@lru_cache(1 << 25)
+@lru_cache(1 << 20)
 def count(rowsLeft, rowA, rowB, rowC):
     if rowsLeft == 0:
         return 1
@@ -54,7 +54,7 @@ def count(rowsLeft, rowA, rowB, rowC):
     #        ##
     # note: this shape extends one "negative" unit to the left
     a, b, c = ba(rowA), ba(rowB), ba(rowC)
-    if (rowsLeft >= 2 and pos > 0 and pos < width and
+    if (rowsLeft >= 2 and pos > 0 and
              use(pos, a) and use(pos - 1, b) and use(pos, b)):
         result += count(rowsLeft, fba(a), fba(b), fba(c))
 
@@ -62,8 +62,7 @@ def count(rowsLeft, rowA, rowB, rowC):
     #         #
     #         #
     a, b, c = ba(rowA), ba(rowB), ba(rowC)
-    if (rowsLeft >= 3 and pos < width and
-            use(pos, a) and use(pos, b) and use(pos, c)):
+    if (rowsLeft >= 3 and use(pos, a) and use(pos, b) and use(pos, c)):
         result += count(rowsLeft, fba(a), fba(b), fba(c))
 
     # shape: ###
