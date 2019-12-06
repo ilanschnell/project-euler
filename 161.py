@@ -29,43 +29,43 @@ def count(rowsLeft, rowA, rowB, rowC):
 
     result = 0
 
-    # shape: @@
-    #        @
+    # shape: @@  a
+    #        @   b
     a, b = ba(rowA), ba(rowB)
     if (rowsLeft >= 2 and pos < width - 1 and
             use(pos, a) and use(pos + 1, a) and use(pos, b)):
         result += count(rowsLeft, fba(a), fba(b), rowC)
 
-    # shape: @@
-    #         @
+    # shape: @@  a
+    #         @  b
     a, b = ba(rowA), ba(rowB)
     if (rowsLeft >= 2 and pos < width - 1 and
             use(pos, a) and use(pos + 1, a) and use(pos + 1, b)):
         result += count(rowsLeft, fba(a), fba(b), rowC)
 
-    # shape: @
-    #        @@
+    # shape: @   a
+    #        @@  b
     a, b = ba(rowA), ba(rowB)
     if (rowsLeft >= 2 and pos < width - 1 and
             use(pos, a) and use(pos, b) and use(pos + 1, b)):
         result += count(rowsLeft, fba(a), fba(b), rowC)
 
-    # shape:  @
-    #        @@
+    # shape:  @  a
+    #        @@  b
     # note: this shape extends one "negative" unit to the left
     a, b = ba(rowA), ba(rowB)
     if (rowsLeft >= 2 and pos > 0 and
              use(pos, a) and use(pos - 1, b) and use(pos, b)):
         result += count(rowsLeft, fba(a), fba(b), rowC)
 
-    # shape: @
-    #        @
-    #        @
+    # shape: @  a
+    #        @  a
+    #        @  a
     a, b, c = ba(rowA), ba(rowB), ba(rowC)
     if (rowsLeft >= 3 and use(pos, a) and use(pos, b) and use(pos, c)):
         result += count(rowsLeft, fba(a), fba(b), fba(c))
 
-    # shape: @@@
+    # shape: @@@  a
     a = ba(rowA)
     if (rowsLeft >= 1 and pos < width - 2 and
             use(pos, a) and use(pos + 1, a) and use(pos + 2, a)):
