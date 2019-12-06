@@ -2,7 +2,7 @@ from sympy.ntheory import primerange, factorint
 
 def M(p, q, N):
     res = 0
-    for i in range(N+1, 1, -1):
+    for i in range(N + 1, 1, -1):
         factors = factorint(i)
         if (len(factors) == 2 and p in factors and q in factors):
             res = i

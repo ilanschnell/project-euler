@@ -11,11 +11,7 @@ def isok(n):
     return True
 
 n = 1010101010  # int(S.replace('_', '0')) ** .5
-while True:
+while not isok(n * n):
     n += 10  # because square has to end with 0
-    n2 = n*n
-    if isok(n2):
-        break
 
 print(n)
-print(n*n)
