@@ -9,10 +9,11 @@ def count(amount, maxcoin=0):
         return 1
     res = 0
     for i in range(maxcoin, Ncoins):
-        if amount - coins[i] == 0:
+        amount_left = amount - coins[i]
+        if amount_left == 0:
             res += 1
-        if amount - coins[i] > 0:
-            res += count(amount - coins[i], i)
+        if amount_left > 0:
+            res += count(amount_left, i)
     return res
 
 print(count(200))
