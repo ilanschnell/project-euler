@@ -3,7 +3,7 @@ from functools import lru_cache
 coins = (200, 100, 50, 20, 10, 5, 2, 1)
 Ncoins = len(coins)
 
-@lru_cache
+@lru_cache(4096)
 def count(amount, maxcoin=0):
     if maxcoin == Ncoins - 1:
         return 1
