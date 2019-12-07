@@ -5,6 +5,10 @@ Ncoins = len(coins)
 
 @lru_cache(512)
 def count(amount, maxcoin=0):
+    """
+    given some amount of money, and the index of the largest coin to use,
+    return the number of ways the amount can be made.
+    """
     if maxcoin == Ncoins - 1:
         return 1
     res = 0
