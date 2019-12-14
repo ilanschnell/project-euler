@@ -1,10 +1,10 @@
-from math import sqrt
+from math import ceil, sqrt
 from bitarray import bitarray
 from sympy.ntheory import primerange
 
 LIMIT = 50_000_000
 
-primes = list(primerange(1, sqrt(LIMIT)))
+primes = list(primerange(1, ceil(sqrt(LIMIT))))
 
 ba = bitarray(LIMIT)
 ba.setall(0)
