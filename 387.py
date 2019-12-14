@@ -1,31 +1,29 @@
-# WORK IN PROGRESS
-from sympy.ntheory import primerange, isprime
+from sympy.ntheory import isprime
 
-def digit_sum(n):
-    return sum(int(d) for d in str(n))
+def compute(N):
+    result = 0
 
-def is_harshad(n):
-    return n % digit_sum(n) == 0
+    # n must be a right-truncatable Harshad number, and the other
+    # arguments are properties of the number n
+    def find_harshad_primes(n, digitsum, is_strong):
+        nonlocal result
 
-def is_rt_harshad(n):
-    s = str(n)
-    for i in range(1, len(s) + 1):
-        if not is_harshad(int(s[:i])):
-            return False
-    return True
+        s = digitsum
+        # shift left by 1 digit, and try all 10 possibilities for the rightmost digit
+        for m in range(10 * n, 10 * n + 10):
+            if m >= N:
+                break
+            if is_strong and isprime(m):
+                result += m
+            j, r = divmod(m, s)
+            if r == 0:
+                find_harshad_primes(m, s, isprime(j))
+            s += 1
 
-def is_strong_harshad(n):
-    i, j = divmod(n, digit_sum(n))
-    if j:
-        return False
-    return isprime(i)
+    for i in range(1, 10):  # All one-digit numbers are trivially Harshad numbers
+        find_harshad_primes(i, i, False)
 
-def count(N):
-    res = 0
-    for p in primerange(10, N):
-        n = int(str(p)[:-1])
-        if is_strong_harshad(n) and is_rt_harshad(n):
-            res += p
-    return res
+    return result
 
-assert count(10_000) == 90619
+assert compute(10000) == 90619
+print(compute(10**14))
