@@ -34,7 +34,7 @@ void explore(long x, long y, long steps)
 
     assert(0 <= y && y < x && x <= LIMIT);
     sum += steps;
-    for (int z = y + (y > 0 ? 1: 2) * x; z <= LIMIT; z += x)
+    for (z = y + (y > 0 ? 1: 2) * x; z <= LIMIT; z += x)
         explore(z, x, steps + 1);
 }
 
