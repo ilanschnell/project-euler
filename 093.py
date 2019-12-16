@@ -1,6 +1,5 @@
 from itertools import permutations, product
 
-
 templates = [
     '(%d %s %d) %s (%d %s %d)',
     '((%d %s %d) %s %d) %s %d',
@@ -12,10 +11,10 @@ templates = [
 def check(lst):
     targets = set()
 
-    for x in permutations(lst):
+    for x1, x2, x3, x4 in permutations(lst):
         for o1, o2, o3 in product('+-*/', repeat=3):
             for temp in templates:
-                equation = temp % (x[0], o1, x[1], o2, x[2], o3, x[3])
+                equation = temp % (x1, o1, x2, o2, x3, o3, x4)
                 try:
                     f = eval(equation)
                     if f > 0.5:
