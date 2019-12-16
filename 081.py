@@ -19,7 +19,9 @@ print('p81:', shortest_path_length(G, source, target, weight='weight'))
 # Problem 82
 
 for i in range(n):
+    # 'source' node has edges to all leftmost "grid" nodes
     G.add_edge('source', (i, 0), weight=0)
+    # 'target' node has edges to all rightmost "gird" nodes
     G.add_edge((i, n), 'target', weight=0)
     for j in range(n):
         G.add_edge((i, j), (i - 1, j), weight=matrix[i][j])  # up
