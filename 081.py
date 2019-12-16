@@ -12,8 +12,8 @@ for i in range(n):
         G.add_edge((i, j), (i, j + 1), weight=w)  # right
         G.add_edge((i, j), (i + 1, j), weight=w)  # down
 
-source = 0, 0
-target = n, n - 1
+source = (0, 0)
+target = (n, n - 1)  # target could also be (n - 1, n)
 print('p81:', shortest_path_length(G, source, target, weight='weight'))
 
 # Problem 82
