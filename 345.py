@@ -1,9 +1,4 @@
-matrix = []
-for line in open('files/p345_matrix-15.txt'):
-    line = line.strip()
-    if line:
-        matrix.append([int(x) for x in line.split()])
-
+matrix = [[int(x) for x in line.split()] for line in open('files/p345_matrix-15.txt')]
 n = len(matrix)
 assert all(len(matrix[i]) == n for i in range(n))
 
