@@ -11,4 +11,5 @@ for i, line in enumerate(open("files/p107_network.txt")):
             continue
         G.add_edge(i, j, weight=int(s[j]))
 
-print(sum_weights(G) - sum_weights(networkx.minimum_spanning_tree(G)))
+MST = networkx.minimum_spanning_tree(G)
+print(sum_weights(G) - sum_weights(MST))
