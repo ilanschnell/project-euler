@@ -1,12 +1,12 @@
-from itertools import permutations, product
+from itertools import permutations, product, count
 
-templates = [
-    '(%d %s %d) %s (%d %s %d)',
-    '((%d %s %d) %s %d) %s %d',
-    '(%d %s (%d %s %d)) %s %d',
-    '%d %s ((%d %s %d) %s %d)',
-    '%d %s (%d %s (%d %s %d))',
-]
+templates = [t.replace('x', '%d').replace('o', '%s') for t in [
+    '(x o x) o (x o x)',
+    '((x o x) o x) o x',
+    '(x o (x o x)) o x',
+    'x o ((x o x) o x)',
+    'x o (x o (x o x))',
+]]
 
 def check(lst):
     targets = set()
@@ -24,9 +24,10 @@ def check(lst):
                 except ZeroDivisionError:
                     pass
 
-    for n in range(1, len(targets)):
+    for n in count(1):
         if n not in targets:
             return n - 1
+    return 0
 
 best = 0
 for d in range(4, 10):
