@@ -28,12 +28,12 @@ def check(lst):
         if n not in targets:
             return n - 1
 
-m = 0
-for d in range(1, 10):
-    for c in range(1, d):
-        for b in range(1, c):
+best = 0
+for d in range(4, 10):
+    for c in range(3, d):
+        for b in range(2, c):
             for a in range(1, b):
                 n = check([a, b, c, d])
-                if n >= m:
-                    m = n
+                if n > best:
+                    best = n
                     print(('%d%d%d%d %d') % (a, b, c, d, n))
