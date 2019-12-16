@@ -1,3 +1,4 @@
+from math import isclose
 from itertools import permutations, product, count
 
 templates = [t.replace('x', '%d').replace('o', '%s') for t in [
@@ -16,11 +17,10 @@ def check(lst):
             for temp in templates:
                 equation = temp % (x1, o1, x2, o2, x3, o3, x4)
                 try:
-                    f = eval(equation)
-                    if f > 0.5:
-                        i = int(f + 1E-8)
-                        if abs(f - i) < 1E-8:
-                            targets.add(i)
+                    x = eval(equation)
+                    i = int(round(x))
+                    if isclose(i, x):
+                        targets.add(i)
                 except ZeroDivisionError:
                     pass
 
