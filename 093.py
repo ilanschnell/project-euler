@@ -1,19 +1,20 @@
 from itertools import permutations, product
 
 
+templates = [
+    '(%d %s %d) %s (%d %s %d)',
+    '((%d %s %d) %s %d) %s %d',
+    '(%d %s (%d %s %d)) %s %d',
+    '%d %s ((%d %s %d) %s %d)',
+    '%d %s (%d %s (%d %s %d))',
+]
+
 def check(lst):
     targets = set()
 
-    template = ['(xxx)x(xxx)',
-                '((xxx)xx)xx',
-                '(xx(xxx))xx',
-                'xx((xxx)xx)',
-                'xx(xx(xxx))']
-
     for x in permutations(lst):
-        for o1, o2, o3, o4 in product('+-*/', repeat=4):
-            for temp in template:
-                temp = temp.replace('x', '%s')
+        for o1, o2, o3 in product('+-*/', repeat=3):
+            for temp in templates:
                 equation = temp % (x[0], o1, x[1], o2, x[2], o3, x[3])
                 try:
                     f = eval(equation)
