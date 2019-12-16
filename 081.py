@@ -1,6 +1,9 @@
 from networkx import DiGraph, shortest_path_length
 
-matrix = [[int(s) for s in line.split(',')] for line in open('files/p081_matrix.txt')]
+matrix = [
+    [int(s) for s in line.split(',')]
+    for line in open('files/p081_matrix.txt')
+]
 n = len(matrix)
 
 # Problem 81
