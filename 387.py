@@ -9,7 +9,8 @@ def compute(N):
         nonlocal result
 
         s = digitsum
-        # shift left by 1 digit, and try all 10 possibilities for the rightmost digit
+        # shift left by 1 digit, and try all 10 possibilities
+        # for the rightmost digit
         for m in range(10 * n, 10 * n + 10):
             if m >= N:
                 break
@@ -20,7 +21,8 @@ def compute(N):
                 find_harshad_primes(m, s, isprime(j))
             s += 1
 
-    for i in range(1, 10):  # All one-digit numbers are trivially Harshad numbers
+    # All one-digit numbers are trivially Harshad numbers
+    for i in range(1, 10):
         find_harshad_primes(i, i, False)
 
     return result
