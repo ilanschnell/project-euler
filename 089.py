@@ -1,7 +1,7 @@
 roman_dict = dict(I=1, V=5, X=10, L=50, C=100, D=500, M=1000)
 
-def roman2int(R):
-    w = [roman_dict[c] for c in R]
+def roman2int(roman):
+    w = [roman_dict[c] for c in roman]
     res = sum(w)
     for p in range(len(w) - 1):
         if w[p] < w[p + 1]:
