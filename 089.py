@@ -10,11 +10,11 @@ def roman2int(R):
 
 def int2roman(i):
     digits = [int(d) for d in '%04d' % i]
-    res = digits[0] * 'M'
-    for n in 2, 1, 0:
-        w = '.0.00.000.01.1.10.100.1000.02'.split('.')[digits[3 - n]]
-        res += ''.join('IVXLCDM'[int(p) + 2 * n] for p in w)
-    return res
+    res = [digits[0] * 'M']
+    v = '.0.00.000.01.1.10.100.1000.02'.split('.')
+    for n, t in (1, 'CDM'), (2, 'XLC'), (3, 'IVX'):
+        res.extend(t[int(p)] for p in v[digits[n]])
+    return ''.join(res)
 
 chars_saved = 0
 for line in open('files/p089_roman.txt'):
