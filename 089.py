@@ -9,10 +9,10 @@ def roman2int(R):
     return res
 
 def int2roman(i):
-    n, i = divmod(i, 1000)
-    res = n * 'M'
+    digits = [int(d) for d in '%04d' % i]
+    res = digits[0] * 'M'
     for n in 2, 1, 0:
-        w = '.0.00.000.01.1.10.100.1000.02'.split('.')[(i // (10 ** n)) % 10]
+        w = '.0.00.000.01.1.10.100.1000.02'.split('.')[digits[3 - n]]
         res += ''.join('IVXLCDM'[int(p) + 2 * n] for p in w)
     return res
 
