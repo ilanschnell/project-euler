@@ -1,19 +1,19 @@
-roman_dict = dict(I=1, V=5, X=10, L=50, C=100, D=500, M=1000)
+roman_numerals = dict(I=1, V=5, X=10, L=50, C=100, D=500, M=1000)
 
 def roman2int(roman):
-    w = [roman_dict[c] for c in roman]
+    w = [roman_numerals[c] for c in roman]
     res = sum(w)
     for p in range(len(w) - 1):
         if w[p] < w[p + 1]:
             res -= 2 * w[p]
     return res
 
-def int2roman(i):
-    digits = [int(d) for d in '%04d' % i]
+def int2roman(n):
+    digits = [int(d) for d in '%04d' % n]
     res = [digits[0] * 'M']
     v = '.0.00.000.01.1.10.100.1000.02'.split('.')
-    for n, t in (1, 'CDM'), (2, 'XLC'), (3, 'IVX'):
-        res.extend(t[int(p)] for p in v[digits[n]])
+    for i, t in (1, 'CDM'), (2, 'XLC'), (3, 'IVX'):
+        res.extend(t[int(p)] for p in v[digits[i]])
     return ''.join(res)
 
 chars_saved = 0
