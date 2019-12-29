@@ -14,12 +14,5 @@ def recur(d):
 
 assert recur(7) == 6
 
-mr = 0
-md = 0
-for d in range(2, 1000):
-    r = recur(d)
-    if r > mr:
-        mr = r
-        md = d
-
-print(md)
+len, d = max((recur(d), d) for d in range(2, 1000))
+print(d)
