@@ -7,12 +7,10 @@ def recur(d):
     f = str(Decimal(1) / Decimal(d))
     if len(f) <= precision:
         return 0
-    f = f.strip('0.')
-    for s in range(10):
-        for r in range(1, 1000):
-            if f[s:s+r] == f[s+r:s+2*r] == f[s+2*r:s+3*r] == f[s+3*r:s+4*r]:
-                #print(d, s, r, f[:s], f[s:s+r])
-                return r
+    for r in range(1, 1000):
+        if f[-2*r:-r] == f[-3*r:-2*r] == f[-4*r:-3*r]:
+            #print(d, r, f[-2*r:-r])
+            return r
 
 assert recur(7) == 6
 
