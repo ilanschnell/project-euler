@@ -11,4 +11,5 @@ for base in range(2, int(sqrt(limit))):
         powers *= base
         curr += powers
 
+print(f'{len(rep)=}')
 print(sum(rep))
