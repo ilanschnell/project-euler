@@ -16,7 +16,6 @@ for n in count(1000000):
     a = A(n)
     if a is None:
         continue
-    if a > 10000:
-        print('A(%s) = %s' % (n, a))
+    print('A(%s) = %s' % (n, a))
     if a > 1000000:
         break
