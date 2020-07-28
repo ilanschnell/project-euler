@@ -3,7 +3,7 @@ from bitarray import bitarray
 from sympy.ntheory import primerange
 from numba import njit
 
-from bitarray.utils import count_n
+from bitarray.util import count_n
 
 @njit
 def ith_fib(i):
