@@ -1,8 +1,7 @@
 from time import time
-from bitarray import bitarray
 from sympy.ntheory import primerange
 from numba import njit
-
+from bitarray import bitarray
 from bitarray.util import count_n
 
 @njit
