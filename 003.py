@@ -1,4 +1,4 @@
-from math import sqrt
+from math import ceil, sqrt
 
 from bitarray import bitarray
 
@@ -7,7 +7,7 @@ N = 10_000
 a = bitarray(N + 1)
 a.setall(True)
 a[:2] = False
-for i in range(2, int(sqrt(N)) + 1):
+for i in range(2, ceil(sqrt(N))):
     if a[i]:  # i is prime, so all multiples are not
         a[i*i::i] = False
 
