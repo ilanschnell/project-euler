@@ -1,8 +1,7 @@
 from time import time
 from sympy.ntheory import primerange
 from numba import njit
-from bitarray import bitarray
-from bitarray.util import count_n
+from bitarray.util import ones, count_n
 
 @njit
 def ith_fib(i):
@@ -34,8 +33,7 @@ def fiblen(m, nmax):
 def euler399(n):
     print("generating Fibonacci sieve")
     limit = int(n * 1.31)
-    sffs = bitarray(limit)
-    sffs.setall(True)  # square free Fibonacci sieve
+    sffs = ones(limit)  # square free Fibonacci sieve
     for p in primerange(1, 1500000):
         l = p * fiblen(p, limit // p + 1)
         if l:
