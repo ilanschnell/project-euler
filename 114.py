@@ -1,8 +1,8 @@
-from functools import lru_cache
+from functools import cache
 
 rml = 3  # red minimum length
 
-@lru_cache
+@cache
 def count(n):
     if n < rml:
         # only one way of doing this (using n grey cells)
