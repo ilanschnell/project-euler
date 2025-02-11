@@ -1,7 +1,7 @@
 from itertools import count
-from functools import lru_cache
+from functools import cache
 
-@lru_cache
+@cache
 def F(m, n): # see 114.py
     if n < m:
         return 1
