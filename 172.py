@@ -1,7 +1,7 @@
 from functools import lru_cache
 
 NUM_DIGITS = 18  # total number of digits
-MAXUSE = 3       # maximum times each digitcan be used
+MAXUSE = 3       # maximum times each digit can be used
 
 @lru_cache(MAXUSE ** 10 * NUM_DIGITS)
 def count(curr, length):
