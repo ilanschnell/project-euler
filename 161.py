@@ -1,4 +1,4 @@
-from functools import lru_cache
+from functools import cache
 from bitarray import bitarray as ba, frozenbitarray as fba
 
 # grid size
@@ -15,7 +15,7 @@ def use(pos, row):
     row[pos] = 1
     return res
 
-@lru_cache(1 << 20)
+@cache
 def count(rowsLeft, rowA, rowB, rowC):
     if rowsLeft == 0:
         return 1

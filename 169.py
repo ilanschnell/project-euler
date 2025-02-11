@@ -1,6 +1,6 @@
-from functools import lru_cache
+from functools import cache
 
-@lru_cache
+@cache
 def count(n, exponent, repeats):
     if exponent < 0:
         return 1 if n == 0 else 0
