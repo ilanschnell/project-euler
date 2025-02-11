@@ -1,5 +1,5 @@
 import itertools
-from functools import lru_cache
+from functools import cache
 from sympy.ntheory import primerange
 
 # this is basically the same as problem 31
@@ -7,7 +7,7 @@ from sympy.ntheory import primerange
 coins = list(primerange(1, 100))
 Ncoins = len(coins)
 
-@lru_cache(1024)
+@cache
 def count(amount, maxcoin=0):
     res = 0
     for i in range(maxcoin, Ncoins):
