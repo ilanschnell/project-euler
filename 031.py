@@ -14,7 +14,7 @@ def count(amount, maxcoin=0):
         amount_left = amount - coins[i]
         if amount_left == 0:
             res += 1
-        if amount_left > 0:
+        elif amount_left > 0:
             res += count(amount_left, i)
     return res
 
