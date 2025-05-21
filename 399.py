@@ -35,9 +35,9 @@ def euler399(n):
     limit = int(n * 1.31)
     sffs = ones(limit)  # square free Fibonacci sieve
     for p in primerange(1, 1500000):
-        l = p * fiblen(p, limit // p + 1)
-        if l:
-            sffs[l - 1::l] = False
+        len = p * fiblen(p, limit // p + 1)
+        if len:
+            sffs[len - 1::len] = False
     print("counting")
     t0 = time()
     i = count_n(sffs, n)
