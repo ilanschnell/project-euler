@@ -1,13 +1,12 @@
-from math import ceil, sqrt
+from math import isqrt
 from bitarray import bitarray
 from sympy.ntheory import primerange
 
 LIMIT = 50_000_000
 
-primes = list(primerange(1, ceil(sqrt(LIMIT))))
+primes = list(primerange(1, isqrt(LIMIT) + 1))
 
 ba = bitarray(LIMIT)
-ba.setall(0)
 
 for a in primes:
     a2 = pow(a, 2)
