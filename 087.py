@@ -6,7 +6,7 @@ LIMIT = 50_000_000
 
 primes = list(primerange(1, isqrt(LIMIT) + 1))
 
-ba = bitarray(LIMIT)
+mark = bitarray(LIMIT)
 
 for a in primes:
     a2 = pow(a, 2)
@@ -15,9 +15,10 @@ for a in primes:
         if b3 > LIMIT:
             break
         for c in primes:
-            n = a2 + b3 + pow(c, 4)
+            c4 = pow(c, 4)
+            n = a2 + b3 + c4
             if n >= LIMIT:
                 break
-            ba[n] = 1
+            mark[n] = 1
 
-print(ba.count())
+print(mark.count())
