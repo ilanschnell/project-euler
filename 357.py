@@ -1,15 +1,11 @@
-from math import sqrt, ceil
-from bitarray import bitarray
+from math import ceil, sqrt
+
+from bitarray.util import gen_primes
 
 
 N = 100_000_000
 
-isprime = bitarray(N + 2)
-isprime.setall(True)
-isprime[:2] = False
-for i in range(2, ceil(sqrt(N))):
-    if isprime[i]:
-        isprime[i*i::i] = False
+isprime = gen_primes(N + 2)
 
 def valid(n):
     if not isprime[n + 1]:

@@ -1,12 +1,7 @@
-from bitarray.util import ones, count_n
+from bitarray.util import count_n, gen_primes
 
-N = 150_000
 
-a = ones(N + 1)
-a[:2] = 0
-for i in range(2, int(N ** 0.5) + 1):
-    if a[i]:
-        a[i*i::i] = 0
+a = gen_primes(150_000)
 
 m = 10_001
 print(count_n(a, m) - 1)
