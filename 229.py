@@ -1,16 +1,15 @@
 # very slow, takes 45 minutes
 from math import isqrt
-from bitarray import bitarray
+from bitarray.util import zeros, ones
 
-LIMIT = 2_000_000_000
+LIMIT = 10_000_000  # 2_000_000_000
 
-sieve = bitarray(LIMIT + 1)
-sieve.setall(1)
+sieve = ones(LIMIT + 1)
 
 sn = isqrt(LIMIT) + 1
 for k in 1, 2, 3, 7:
     print('k =', k)
-    s = bitarray(LIMIT + 1)
+    s = zeros(LIMIT + 1)
     for a in range(1, sn):
         a2 = a * a
         b = 0
