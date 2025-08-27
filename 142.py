@@ -1,9 +1,8 @@
 from bitarray import bitarray
 
-is_sqr = bitarray(1_000_001)
-is_sqr.setall(False)
-for i in range(1001):
-    is_sqr[i * i] = True
+is_sqr = bitarray(1_000_000)
+for i in range(1000):
+    is_sqr[i * i] = 1
 
 def prop(x, y):
     return is_sqr[x + y] and is_sqr[x - y]
