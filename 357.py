@@ -5,17 +5,17 @@ from bitarray.util import gen_primes
 
 N = 100_000_000
 
-isprime = gen_primes(N + 2)
+prime = gen_primes(N + 2)
 
 def valid(n):
-    if not isprime[n + 1]:
+    if not prime[n + 1]:
         return False
-    if not isprime[2 + n // 2]:
+    if not prime[2 + n // 2]:
         return False
     for d in range(3, ceil(sqrt(n))):
         if n % d:
             continue
-        if not isprime[d + n//d]:
+        if not prime[d + n // d]:
             return False
     return True
 
