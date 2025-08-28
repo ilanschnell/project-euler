@@ -1,11 +1,11 @@
-from bitarray import bitarray
+from math import fmod, sqrt
 
-is_sqr = bitarray(1_000_000)
-for i in range(1000):
-    is_sqr[i * i] = 1
+
+def is_square(x):
+    return fmod(sqrt(x), 1.0) == 0.0
 
 def prop(x, y):
-    return is_sqr[x + y] and is_sqr[x - y]
+    return is_square(x + y) and is_square(x - y)
 
 pa = {}
 
