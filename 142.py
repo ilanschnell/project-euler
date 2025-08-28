@@ -1,8 +1,8 @@
-from math import fmod, sqrt
+from math import modf, sqrt
 
 
 def is_square(x):
-    return fmod(sqrt(x), 1.0) == 0.0
+    return modf(sqrt(x))[0] == 0.0
 
 def prop(x, y):
     return is_square(x + y) and is_square(x - y)
